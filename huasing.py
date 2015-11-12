@@ -34,15 +34,22 @@ class Main(Wox):
 	r.encoding = 'utf-8'
 	bs = BeautifulSoup(r.content, 'html.parser')
 	posts = bs.find_all('div', 'fake-s')
-	result = [{
-            'Title': full2half(p.find('div').contents[0]),
-            'SubTitle': p.find_all('div')[1].string.split(',')[0],
-            'IcoPath': os.path.join('img', 'huasing.png'),
-            'JsonRPCAction': {
-                'method': 'open_url',
-                'parameters': [self.getLink(p['id'])]
+
+	result = []
+	for p in posts[2:]:
+            meta = p.find_all('div')[1].string.split(',')
+            title = p.find('div').contents[0]
+            
+            item = {
+                'Title': u'{subject} [{replies}]'.format(subject=full2half(title), replies=meta[3]),
+                'SubTitle': u'{forum} | {user} | {time}'.format(forum=meta[0], user=meta[9], time=meta[10].replace('\n', ' ')),
+                'IcoPath': os.path.join('img', 'huasing.png'),
+                'JsonRPCAction': {
+                    'method': 'open_url',
+                    'parameters': [self.getLink(p['id'])]
+                }
             }
-        } for p in posts[2:]]
+            result.append(item)
         
 	return result
 
