@@ -1,12 +1,12 @@
 {
-  "ID":"3D008F00CFD24DAA89A35161D72E8EF7a",
+  "ID":"a9cd5780-88f5-11e5-b07e-851f228907e3",
   "ActionKeyword":"huas",
   "Name":"Huasing News",
   "Description":"华新新鲜事",
   "Author":"nevermoi",
   "Version":"0.0.1",
   "Language":"python",
-  "Website":"https://github.com/wenLiangcan/V2EX.wox",
+  "Website":"https://github.com/shuson/wox-plugin-huasing",
   "IcoPath": "img\\huasing.png",
   "ExecuteFileName":"huasing.py"
 }
